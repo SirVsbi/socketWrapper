@@ -59,19 +59,15 @@ bool Socket::recieve(char *msg, int len) {
 
 void Socket::sendInt(int data){
    uint32_t sent = htonl(data);
-    send(this->getSocket(), &sent, sizeof(sent), 0);
+    ::send(this->getSocket(), &sent, sizeof(sent), 0);
 }
 
 
 uint32_t Socket::getint_32_t(const Socket* listeningSocket){
     uint32_t a;
-    recv(listeningSocket->getSocket(), (char*)&a, sizeof(a), 0);
+    ::recv(listeningSocket->getSocket(), (char*)&a, sizeof(a), 0);
     a = ntohl(a);
     return a;
-}
-
-Socket::Socket(Socket* pSocket) {
-    this->setSocket(pSocket->getSocket());
 
 }
 

@@ -17,7 +17,7 @@ class Socket {
 public:
     //void send(const char *data, unsigned int length);
 
-    Socket(Socket *pSocket);
+
 
     bool recieve(char *msg, int len);
 

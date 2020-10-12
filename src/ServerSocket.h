@@ -5,6 +5,8 @@
 #ifndef SOCKETWRAPPER_SERVERSOCKET_H
 #define SOCKETWRAPPER_SERVERSOCKET_H
 
+#include <vector>
+#include <thread>
 #include "Socket.h"
 
     class ServerSocket : public Socket {
@@ -12,25 +14,25 @@
     public:
         ServerSocket();
 
-        ServerSocket(int port);
+        explicit ServerSocket(int port);
 
         void listen();
 
-        int accept();
+        Socket* accept();
 
         sockaddr_in* getClientInfo();
 
-        int test();
-
-        int recieveInt();
-
         [[nodiscard]] const Socket* getClientSocket() const;
 
-    private:
-        struct sockaddr_in serverAddress{}, clientAddress{};
-        socklen_t clientLength;
-        Socket* clientSocket;
 
+        void handleClient( Socket* clientSocket);
+
+    private:
+        struct sockaddr_in serverAddress{};
+        struct sockaddr_in clientAddress{};
+        socklen_t clientLength{};
+        Socket* clientSocket{};
+        std::vector<std::unique_ptr<std::thread>> threads;
     };
 
 

@@ -7,7 +7,7 @@
 
 int main(){
     try{
-        ClientSocket socket("test", 25565);
+        ClientSocket socket("test", 25566);
         uint32_t sent = 42;
         socket.sendInt(sent);
     }catch(std::exception& e){

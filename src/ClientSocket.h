@@ -9,7 +9,7 @@
 #include <netdb.h>
 #include <string>
 
-//using namespace ezSocket;
+
 class ClientSocket : public Socket{
 public:
     ClientSocket();
